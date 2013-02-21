@@ -1,0 +1,16 @@
+For start development download:
+ * JDK (Example: jdk-6u11-windows-i586-p.exe)
+ * WTK (Example: sun_java_wireless_toolkit-2.5.2_01-win.exe)
+ * ANT (Example: apache-ant-1.7.1-bin.zip)
+ * Proguard (Example: proguard4.3.zip)
+ * Text etitor or IDE (Example: Notepad++)
+ 
+1. Install JDK
+2. Install WTK
+3. Install text etitor or IDE
+4. Extract ANT and Proguard
+5. In the variable environments in the PATH variable to add where to system to look for the ANT file (It possible to skip if you are use IDE. Then setting up your IDE)
+6. In build.xml replace CHANGE_ME. Example:
+	<property name="proguard" value="C:\PROGRA~1\JAVA\JDK16~1.0_0/proguard4.3beta1"/>
+	<property name="MIDP2/midp" value="C:\Program Files\Java\WTK2.5.2" />
+7. Run CMD on project root folder and enter "ant" or "ant -Dskip-obfuscate=1" for skip obfuscate. (If you are use IDE it is possible to do differently).

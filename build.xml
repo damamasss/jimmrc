@@ -33,7 +33,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
     <!--  use both the slash and the backslash for separating path              -->
     <!--  components.                                                           -->
     <property name="DEFAULT/midp" value="CHANGE ME"/>
-    <property name="MIDP2/midp" value="C:\Program Files\WTC"/>
+    <property name="MIDP2/midp" value="CHANGE ME"/>
     <property name="RIM/midp" value="CHANGE ME"/>
     <property name="SIEMENS1/midp" value="CHANGE ME"/>
     <property name="SIEMENS2/midp" value="CHANGE ME"/>
@@ -54,7 +54,7 @@ Author(s): Manuel Linsmayer, Andreas Rossbacher
     <!--  Change this to the directory where ProGuard is installed. You can     -->
     <!--  use both the slash and the backslash for separating path components.  -->
 	<!--  use C:\Program Files\Java_build\proguard40						  	-->
-    <property name="proguard" value="C:\Program Files\Java_build\proguard"/>
+    <property name="proguard" value="CHANGE ME"/>
     <!--  *******************************************************************   -->
     <!--  This property must point at the ProGuard JAR file, normally found     -->
     <!--  in the lib directory of the ProGuard distribution.                    -->
