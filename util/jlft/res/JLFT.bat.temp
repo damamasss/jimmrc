@@ -1,0 +1,1 @@
+java -classpath "." -jar util\jlft\dist\lib\jlft.jar

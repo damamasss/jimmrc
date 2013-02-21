@@ -1,0 +1,9 @@
+<container>
+    <item par_name="Calibri *19" folder="gfonts/calibri_19.fnt"/>
+	<item par_name="Infium *16" folder="gfonts/infium_16.fnt"/>
+    <item par_name="Normal *13" folder="gfonts/normal_13.fnt"/>
+    <item par_name="Pollock*14" folder="gfonts/pollock_14.fnt"/>
+    <item par_name="Script *16" folder="gfonts/script_16.fnt"/>
+	<item par_name="Scripting *17" folder="gfonts/scripting_17.fnt"/>
+	<item par_name="Symbian *15" folder="gfonts/symbian_15.fnt"/>
+</container>

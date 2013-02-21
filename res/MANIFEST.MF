@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+MIDlet-1: J[i]mm, /icon.png, jimm.Jimm
+MIDlet-Vendor: Jimm Project
+MIDlet-Name: J[i]mm
+MIDlet-Version: ###VERSION-JAVA###
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: ###MIDP-PROFILE###
+MIDlet-Info-URL: http://jimm.besticq.ru/
+MIDlet-Description: Jimm ###VERSION###
+MIDlet-Jar-URL: Jimm.jar
+MIDlet-Jar-Size: ###SIZE###
+Nokia-MIDlet-On-Screen-Keypad: no
+LGE-MIDlet-TargetLCD-Height: 400
+LGE-MIDlet-TargetLCD-Width: 240

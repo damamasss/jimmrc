@@ -1,0 +1,19 @@
+﻿//for Nokia without "C"-key
+//[keyCode]=[chars_ru] [chars_en] //[comment]
+48=SPACE0 //0
+49=.,?!1@'-_():; //1
+50=абвг2abc abc //2
+51=дежз3defё def //3
+52=ийкл4ghi ghi //4
+53=мноп5jkl jkl //5
+54=рсту6mno mno //6
+55=фхцч7pqrs pqrs //7
+56=шщъы8tuv tuv //8
+57=ьэюя9wxyz wxyz //9
+
+35=SHIFT //#
+42=SYMBOLS //*
+32=SPACE //real space 0x20
+
+C=0 //clear-key [0 == false]
+TIMEOUT=700

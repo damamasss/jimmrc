@@ -1,0 +1,15 @@
+0, XaTTaB, schemes/xattab.txt
+1, Aqua, schemes/aqua.txt
+2, Besticq, schemes/besticq.txt
+3, Divide, schemes/divide.txt
+4, Europe, schemes/euro.txt
+5, ICQ, schemes/icq.txt
+6, INFY, schemes/infy.txt
+7, Lilovyi, schemes/lilo.txt
+8, Marganec, schemes/marganec.txt
+9, Mega Black, schemes/megablack.txt
+10, Odnoklassniki, schemes/odnoklassniki.txt
+11, Pink, schemes/pink.txt
+12, Protocol, schemes/proto.txt
+13, Twitter, schemes/twitter.txt
+14, Vkontakte, schemes/vk.txt

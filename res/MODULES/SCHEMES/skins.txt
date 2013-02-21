@@ -1,0 +1,12 @@
+0, Blue [CS], skins/defcs.png
+1, Green [CS], skins/cs_green.png
+2, Orange [CS], skins/cs_orange.png
+3, kNa7e [CS], skins/knave.png
+4, Aqua, skins/aqua.png
+5, Aqua Dark, skins/aqua_dark.png
+6, Brand, skins/brand.png
+7, Positive, skins/positive.png
+8, uDA, skins/uda.png
+9, Red Classic, skins/redclassic.png
+10, Breeze Old, infium/breeze_old.png
+11, Breeze Modern 2.2, infium/breeze_modern_22.png

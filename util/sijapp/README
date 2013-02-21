@@ -1,0 +1,175 @@
+
+                        SiJaPP - Simple Java PreProcessor
+
+================================================================================
+README
+________________________________________________________________________________
+ABOUT
+
+SiJaPP is a simple Java preprocessor. It supports conditional compiling. A
+SiJaPP statement looks like this:
+
+  #sijapp <COMMAND>[.<SUBCOMMAND>] <PARAMETERS> #
+
+The rest of the line is ignored. Each statement must not span across multiple
+lines and only the first statement per line is evaluated.
+
+Currently the following commands are available:
+
+  *  cond.[if|elseif] <EXPR>
+     cond.[else|end]
+       With these commands it is possible to include/exclude code sections
+       based on whether certain conditions hold or not.
+       Code is excluded by commenting it out. Special SiJaPP comments (lines
+       that start with //#) are removed before the line is processed. You can
+       use this to exclude areas of conditional code from normal Java 
+       compilation (e.g. in IDE).
+
+  *  echo <STRING>
+       Prints the specified string.
+
+  *  env.def <IDENT> [<STRING>]
+     env.undef <IDENT>
+       Set/unset variables locally. <STRING> defaults to "defined".
+
+  *  exit
+       Rest of the file is ignored.
+
+SiJaPP supports the following operators, listed in order of descending
+precedence:
+
+  *  Equal             "="  "is"      L/2  <IDENT>,<STRING>,"defined"/<BOOL>
+  *  Not equal         "!=" "isnot"   L/2  <IDENT>,<STRING>,"defined"/<BOOL>
+  *  Conditional NOT   "!"  "not"     R/1  <BOOL>                    /<BOOL>
+  *  Conditional AND   "&"  "and"     L/2  <BOOL>                    /<BOOL>
+  *  Conditional OR    "|"  "or"      L/2  <BOOL>                    /<BOOL>
+
+Default operator precedence can be overriden through the use of parentheses,
+to explicitly specify the order of operations.
+
+Strings are enclosed by double quotes. Double quotes and backslashes have to be
+escaped by using a backslash. Other escape sequences are not supported.
+
+All identifiers have to start with a alphabetic character or an underscore,
+optionally followed by one or more alphanumerical characters and underscores.
+
+Identifiers and keywords are case-sensitive.
+
+________________________________________________________________________________
+TOKENS
+
+  *  MAGIC_BEGIN     "#sijapp"
+  *  MAGIC_END       "#"
+  *  IDENT           [A-Za-z_][A-Za-z0-9_]* -- e.g. foobar, _DEBUG, WIN98
+  *  STRING          Characters enclosed by double quotes -- e.g. "foobar"
+  *  BOOL            "true" "false"
+  *  SEP             "."
+  *  CMD1_COND       "cond" "condition"
+  *  CMD1_ECHO       "echo"
+  *  CMD1_ENV        "env" "environment"
+  *  CMD1_EXIT       "exit"
+  *  CMD2_IF         "if"
+  *  CMD2_ELSEIF     "elseif"
+  *  CMD2_ELSE       "else"
+  *  CMD2_END        "end"
+  *  CMD2_DEF        "def" "define"
+  *  CMD2_UNDEF      "undef" "undefine"
+  *  EXPR_PRS_LEFT   "("
+  *  EXPR_PRS_RIGHT  ")"
+  *  EXPR_EQ         "=" "is"
+  *  EXPR_NEQ        "!=" "isnot"
+  *  EXPR_NOT        "!" "not"
+  *  EXPR_AND        "&" "and"
+  *  EXPR_OR         "|" "or"
+  *  EXPR_DEF        "defined"
+
+________________________________________________________________________________
+DETERMINISTIC FINITE AUTOMATON
+
+||                         [A-Za-z0-9_]
+||                      /----------------\
+||                     |                  |
+||  #      [A-Za-z_]   |                  |
+||----->Q------------->Q<----------------/
+||      1              2
+||
+||                  [A-Za-z0-9_]
+||               /----------------\
+||              |                  |
+||  [A-Za-z_]   |                  |
+||------------->Q<----------------/
+||              3
+||  .
+||----->Q
+||      4
+||
+||       /-----\
+||      |       |
+||      |       |
+||       \     /
+||        \   /
+||    "    \ V   "
+||--------->O--------->Q
+||          5          6
+||         ^ \
+||        /   \
+||       /     \
+|| [\"] |       | \
+||      |       |
+||       \--O<-/
+||          7
+||  [ \t]
+||--------->Q
+||          8
+||  (
+||----->Q
+||      9
+||  )
+||----->Q
+||     10
+||  =
+||----->Q
+||     11
+||  !      =
+||----->Q----->Q
+||     12     13
+||  &
+||----->Q
+||     14
+||  |
+||----->Q
+||     15
+
+________________________________________________________________________________
+GRAMMAR (BNF)
+
+  *  <all> ::= MAGIC_BEGIN <cmd> MAGIC_END
+  *  <cmd> ::= CMD1_COND SEP CMD2_IF <expr>
+             | CMD1_COND SEP CMD2_ELSEIF <expr>
+             | CMD1_COND SEP CMD2_ELSE
+             | CMD1_COND SEP CMD2_END
+             | CMD1_ECHO STRING
+             | CMD1_ENV SEP CMD2_DEF IDENT
+             | CMD1_ENV SEP CMD2_DEF IDENT STRING
+             | CMD1_ENV SEP CMD2_UNDEF IDENT
+             | CMD1_EXIT
+  *  <expr> ::= EXPR_PRS_LEFT <expr> EXPR_PRS_RIGHT
+              | <term> EXPR_EQ <term>
+              | <term> EXPR_NEQ <term>
+              | EXPR_NOT <expr>
+              | <expr> EXPR_AND <expr>
+              | <expr> EXPR_OR <expr>
+  *  <term> ::= IDENT
+              | STRING
+              | EXPR_DEF
+
+________________________________________________________________________________
+LICENSING
+
+For licensing and copyright information, please see the file COPYING in the
+SiJaPP distribution.
+
+________________________________________________________________________________
+CREDITS
+
+SiJaPP is written by Manuel Linsmayer <manuel at jimm.org>.

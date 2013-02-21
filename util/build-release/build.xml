@@ -1,0 +1,277 @@
+<!--
+********************************************************************************
+Jimm - Mobile Messaging - J2ME ICQ clone
+Copyright (C) 2003-05  Jimm Project
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+********************************************************************************
+File: util/build-release/build.xml
+Version: ###VERSION###  Date: ###DATE###
+Author(s): Manuel Linsmayer, Andreas Rossbacher
+********************************************************************************
+-->
+
+<project name="Jimm" default="release-part1">
+
+    <!-- ******************************************************************* -->
+    <!-- CONFIGURATION SECTION - CHANGE VALUES TO REFLECT YOUR ENVIRONMENT   -->
+    <!-- ******************************************************************* -->
+    <property name="DEFAULT/midp" value="CHANGE ME"/>
+    <property name="DEFAULT/midp/lib" value="${DEFAULT/midp}/lib/cldcapi10.jar;${DEFAULT/midp}/lib/midpapi10.jar"/>
+    <property name="MIDP2/midp" value="CHANGE ME"/>
+    <property name="MIDP2/midp/lib"
+              value="${MIDP2/midp}/lib/cldcapi10.jar;${MIDP2/midp}/lib/midpapi20.jar;${MIDP2/midp}/lib/mmapi.jar;${MIDP2/midp}/lib/jsr75.jar"/>
+    <property name="RIM/midp" value="CHANGE ME"/>
+    <property name="RIM/midp/lib" value="${RIM/midp}/lib/net_rim_api.jar"/>
+    <property name="SIEMENS1/midp" value="CHANGE ME"/>
+    <property name="SIEMENS1/midp/lib" value="${SIEMENS1/midp}/lib/API.jar"/>
+    <property name="SIEMENS2/midp" value="CHANGE ME"/>
+    <property name="SIEMENS2/midp/lib" value="${SIEMENS2/midp}/lib/api.jar;res/SIEMENS2/lib/fileaccess.jar"/>
+    <property name="MOTOROLA/midp" value="CHANGE ME"/>
+    <property name="MOTOROLA/midp/lib"
+              value="${MIDP2/midp}/lib/cldcapi10.jar;${MIDP2/midp}/lib/midpapi20.jar;${MIDP2/midp}/lib/mmapi.jar;res/MOTOROLA/lib/fileaccess.jar"/>
+    <property name="proguard" value="CHANGE ME"/>
+    <property name="proguard/lib" value="${proguard}/lib/proguard.jar"/>
+    <!--  *******************************************************************   -->
+
+    <!-- ******************************************************************* -->
+    <!-- RELEASE VERSION SECTION - EVERY RELEASE HAS A UNIQUE VERSION NUMBER -->
+    <!-- ******************************************************************* -->
+    <property name="version/jimm" value="###VERSION###"/>
+    <property name="version/java" value="###VERSION-JAVA###"/>
+    <!-- ******************************************************************* -->
+
+    <!-- ******************************************************************* -->
+    <!-- CVS TAG SECTION - CHOOSE WHICH CVS TAG SHOULD BE CHECKED OUT        -->
+    <!-- ******************************************************************* -->
+    <property name="cvstag" value="release_0_4_1"/>
+    <!-- ******************************************************************* -->
+
+    <!-- ******************************************************************* -->
+    <!-- CHANGE NOTHING BELOW THIS LINE, UNLESS YOU KNOW WHAT YOU'RE DOING   -->
+    <!-- ******************************************************************* -->
+
+
+    <!-- Buildfile description -->
+    <description>This buildfile is used to build a Jimm release.</description>
+
+
+    <!-- Set global properties for this build -->
+    <property name="cvsroot" value=":pserver:anonymous@cvs.sourceforge.net:/cvsroot/jimm"/>
+    <property name="cvsdir" location="release-cvs"/>
+    <property name="package" value="jimm"/>
+    <property name="bin" value="bin"/>
+    <property name="midp1-targetlist" value="DEFAULT;SIEMENS1"/>
+    <property name="midp2-targetlist" value="MIDP2;SIEMENS2;MOTOROLA"/>
+    <property name="midp1-moduleslist"
+              value="TRAFFIC;HISTORY;SMILES;NO_MODULES;TRAFFIC,HISTORY,SMILES;TRAFFIC,HISTORY;TRAFFIC,SMILES;HISTORY,SMILES"/>
+    <property name="midp2-moduleslist"
+              value="TRAFFIC;HISTORY;FILES;SMILES;NO_MODULES;TRAFFIC,HISTORY,FILES,SMILES;TRAFFIC,HISTORY,FILES;TRAFFIC,HISTORY,SMILES;HISTORY,FILES,SMILES;TRAFFIC,HISTORY;TRAFFIC,FILES;TRAFFIC,SMILES;HISTORY,FILES;HISTORY,SMILES;FILES,SMILES"/>
+    <property name="langlist"
+              value="EN,BR;EN,CZ;EN,DE;EN,ES;EN,HE;EN,IT;EN,LT;EN,RU;EN,SE;EN,SR;EN;BR;CZ;DE;ES;HE;IT;LT;RU;SE;SR"/>
+
+
+    <!-- Auxiliary property -->
+    <property name="3ns" value="###"/>
+
+
+    <!-- Include Ant-Contrib Tasks -->
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+
+    <!-- Internal target: init -->
+    <target name="init">
+        <tstamp>
+            <format property="date"
+                    pattern="yyyy/MM/dd"
+                    timezone="GMT+00:00"/>
+        </tstamp>
+        <tstamp>
+            <format property="touchdate"
+                    pattern="MM/dd/yyyy"
+                    timezone="GMT+00:00"/>
+        </tstamp>
+    </target>
+
+
+    <!-- Internal target: export -->
+    <target name="export" depends="init">
+        <mkdir dir="${cvsdir}"/>
+        <cvs command="checkout"
+             cvsRoot="${cvsroot}"
+             dest="${cvsdir}"
+             package="${package}"
+             tag="${cvstag}"
+             failonerror="true"/>
+    </target>
+
+
+    <!-- Internal targets: build/build-target/build-target-connection/build-target-connection-lang -->
+    <target name="build" depends="export">
+        <foreach list="${midp1-targetlist}"
+                 target="midp1-build-target"
+                 param="target"
+                 delimiter=";"
+                 inheritall="true"/>
+        <foreach list="${midp2-targetlist}"
+                 target="midp2-build-target"
+                 param="target"
+                 delimiter=";"
+                 inheritall="true"/>
+    </target>
+    <target name="midp1-build-target">
+        <foreach list="${langlist}"
+                 target="midp1-build-target-modules"
+                 param="lang"
+                 delimiter=";"
+                 inheritall="true"/>
+    </target>
+    <target name="midp2-build-target">
+        <foreach list="${langlist}"
+                 target="midp2-build-target-modules"
+                 param="lang"
+                 delimiter=";"
+                 inheritall="true"/>
+    </target>
+    <target name="midp1-build-target-modules">
+        <foreach list="${midp1-moduleslist}"
+                 target="build-target-lang"
+                 param="modules"
+                 delimiter=";"
+                 inheritall="true"/>
+    </target>
+    <target name="midp2-build-target-modules">
+        <foreach list="${midp2-moduleslist}"
+                 target="build-target-lang"
+                 param="modules"
+                 delimiter=";"
+                 inheritall="true"/>
+    </target>
+    <target name="build-target-lang">
+        <echo message="Building: Target:${target} Modules:${modules} Languages:${lang}"/>
+        <antcall target="dist"/>
+    </target>
+
+
+    <!-- Internal target: dist -->
+    <target name="dist">
+        <propertycopy name="midp" from="${target}/midp"/>
+        <propertycopy name="midp/lib" from="${target}/midp/lib"/>
+        <ant dir="${cvsdir}/${package}"
+             inheritAll="false">
+            <property name="DEFAULT/midp" value="${DEFAULT/midp}"/>
+            <property name="DEFAULT/midp/lib" value="${DEFAULT/midp/lib}"/>
+            <property name="MIDP2/midp" value="${MIDP2/midp}"/>
+            <property name="MIDP2/midp/lib" value="${MIDP2/midp/lib}"/>
+            <property name="RIM/midp" value="${RIM/midp}"/>
+            <property name="RIM/midp/lib" value="${RIM/midp/lib}"/>
+            <property name="SIEMENS1/midp" value="${SIEMENS1/midp}"/>
+            <property name="SIEMENS1/midp/lib" value="${SIEMENS1/midp/lib}"/>
+            <property name="SIEMENS2/midp" value="${SIEMENS2/midp}"/>
+            <property name="SIEMENS2/midp/lib" value="${SIEMENS2/midp/lib}"/>
+            <property name="MOTOROLA/midp" value="${MOTOROLA/midp}"/>
+            <property name="MOTOROLA/midp/lib" value="${MOTOROLA/midp/lib}"/>
+            <property name="proguard" value="${proguard}"/>
+            <property name="proguard/lib" value="${proguard/lib}"/>
+            <property name="target" value="${target}"/>
+            <property name="modules" value="${modules}"/>
+            <property name="lang" value="${lang}"/>
+            <property name="version/jimm" value="${version/jimm}"/>
+            <property name="version/java" value="${version/java}"/>
+        </ant>
+        <mkdir dir="${cvsdir}/${package}/${bin}/${target}/${modules}/${lang}"/>
+        <copy file="${cvsdir}/${package}/dist/bin/Jimm.jad"
+              todir="${cvsdir}/${package}/${bin}/${target}/${modules}/${lang}"/>
+        <copy file="${cvsdir}/${package}/dist/bin/Jimm.jar"
+              todir="${cvsdir}/${package}/${bin}/${target}/${modules}/${lang}"/>
+        <ant dir="${cvsdir}/${package}"
+             target="clean"
+             inheritAll="false">
+            <property name="DEFAULT/midp" value="${DEFAULT/midp}"/>
+            <property name="DEFAULT/midp/lib" value="${DEFAULT/midp/lib}"/>
+            <property name="MIDP2/midp" value="${MIDP2/midp}"/>
+            <property name="MIDP2/midp/lib" value="${MIDP2/midp/lib}"/>
+            <property name="RIM/midp" value="${RIM/midp}"/>
+            <property name="RIM/midp/lib" value="${RIM/midp/lib}"/>
+            <property name="SIEMENS1/midp" value="${SIEMENS1/midp}"/>
+            <property name="SIEMENS1/midp/lib" value="${SIEMENS1/midp/lib}"/>
+            <property name="proguard" value="${proguard}"/>
+            <property name="proguard/lib" value="${proguard/lib}"/>
+            <property name="target" value="${target}"/>
+            <property name="lang" value="${lang}"/>
+            <property name="version/jimm" value="${version/jimm}"/>
+            <property name="version/java" value="${version/java}"/>
+        </ant>
+    </target>
+
+
+    <!-- Target: release-part1 -->
+    <target name="release-part1" description="Generates the release (part 1)">
+        <antcall target="build"/>
+        <echo message="Build target release-part2 to complete build process!"/>
+    </target>
+
+
+    <!-- Target: release-part2 -->
+    <target name="release-part2" depends="init" description="Generate the release (part 2)">
+        <ant dir="${cvsdir}/${package}/util/sijapp"
+             target="clean"
+             inheritAll="false"/>
+        <ant dir="${cvsdir}/${package}/util/jarsizetask"
+             target="clean"
+             inheritAll="false"/>
+        <replace dir="${cvsdir}/${package}"
+                 encoding="UTF-8">
+            <replacefilter token="${3ns}VERSION${3ns}"
+                           value="${version/jimm}"/>
+            <replacefilter token="${3ns}VERSION-JAVA${3ns}"
+                           value="${version/java}"/>
+            <replacefilter token="${3ns}DATE${3ns}"
+                           value="${date}"/>
+        </replace>
+        <move todir="${cvsdir}/${package}-${version/jimm}">
+            <fileset dir="${cvsdir}/${package}"/>
+        </move>
+        <delete dir="${cvsdir}/${package}"/>
+        <touch datetime="${touchdate} 00:00 AM">
+            <fileset dir="${cvsdir}/${package}-${version/jimm}"/>
+        </touch>
+        <zip destfile="${package}-${version/jimm}.zip"
+             basedir="${cvsdir}"/>
+        <tar destfile="${package}-${version/jimm}.tar.bz2"
+             basedir="${cvsdir}"
+             compression="bzip2"/>
+        <exec dir="." executable="7z">
+            <arg line="a ${package}-${version/jimm}.7z  ${cvsdir}/* -r"/>
+        </exec>
+        <touch file="${package}-${version/jimm}.zip"
+               datetime="${touchdate} 00:00 AM"/>
+        <touch file="${package}-${version/jimm}.tar.bz2"
+               datetime="${touchdate} 00:00 AM"/>
+        <touch file="${package}-${version/jimm}.7z"
+               datetime="${touchdate} 00:00 AM"/>
+    </target>
+
+
+    <!-- Target: clean -->
+    <target name="clean" description="Delete the release">
+        <delete dir="${cvsdir}"/>
+        <delete file="${package}-${version/jimm}.zip"/>
+        <delete file="${package}-${version/jimm}.tar.bz2"/>
+        <delete file="${package}-${version/jimm}.7z"/>
+    </target>
+
+
+</project>

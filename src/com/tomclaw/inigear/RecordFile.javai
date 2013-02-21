@@ -1,0 +1,109 @@
+package com.tomclaw.inigear;
+
+import com.tomclaw.mandarin.main.Logger;
+import javax.microedition.rms.RecordStore;
+import javax.microedition.rms.RecordStoreException;
+
+/**
+ * Solkin Igor Viktorovich, TomClaw Software, 2003-2010
+ * http://www.tomclaw.com/
+ * @author Игорь
+ */
+public class RecordFile {
+
+    public static void saveFile(String fileName, INIGear iniGear) {
+        saveFile(fileName, iniGear, false);
+    }
+
+    public static void saveFile(final String fileName, final INIGear iniGear, boolean isBackground) {
+        Logger.outMessage("Save file " + fileName + " request.");
+        Thread thread = new Thread() {
+
+            public void run() {
+                removeFile(fileName);
+                saveFile(fileName, iniGear.getStructure());
+            }
+        };
+        if (isBackground) {
+            thread.setPriority(Thread.MIN_PRIORITY);
+            thread.start();
+        } else {
+            thread.run();
+        }
+    }
+
+    public static int saveFile(String fileName, byte[] data) {
+        try {
+            RecordStore recordStore = RecordStore.openRecordStore(fileName, true);
+            int index = recordStore.addRecord(data, 0, data.length);
+            recordStore.closeRecordStore();
+            return index;
+        } catch (RecordStoreException ex) {
+            // ex.printStackTrace();
+            Logger.outMessage("Couldn't save to RMS", true);
+        }
+        return -1;
+    }
+
+    public static void loadFile(String fileName, INIGear iniGear) {
+        Logger.outMessage("Load file " + fileName + " request.");
+        iniGear.setStructure(loadFile(fileName));
+    }
+
+    public static byte[] loadFile(String fileName) {
+        return loadFile(fileName, 1);
+    }
+
+    public static byte[] loadFile(String fileName, int index) {
+        try {
+            RecordStore recordStore = RecordStore.openRecordStore(fileName, true);
+            byte[] data;
+            if (recordStore.getNumRecords() >= index) {
+                data = recordStore.getRecord(index);
+            } else {
+                data = new byte[0];
+            }
+            recordStore.closeRecordStore();
+            return data;
+        } catch (RecordStoreException ex) {
+            // ex.printStackTrace();
+            Logger.outMessage("Couldn't load from RMS", true);
+        }
+        return new byte[]{};
+    }
+
+    public static int getRecordsCount(String fileName) {
+        try {
+            RecordStore recordStore = RecordStore.openRecordStore(fileName, true);
+            int numRecords = recordStore.getNumRecords();
+            recordStore.closeRecordStore();
+            return numRecords;
+        } catch (RecordStoreException ex) {
+            // ex.printStackTrace();
+            Logger.outMessage("Couldn't get record count from RMS", true);
+        }
+        return -1;
+    }
+
+    public static int getIndexSize(String fileName, int index) {
+        try {
+            RecordStore recordStore = RecordStore.openRecordStore(fileName, true);
+            int recordSize = recordStore.getRecordSize(index);
+            recordStore.closeRecordStore();
+            return recordSize;
+        } catch (RecordStoreException ex) {
+            // ex.printStackTrace();
+            Logger.outMessage("Couldn't get index size", true);
+        }
+        return -1;
+    }
+
+    public static void removeFile(String fileName) {
+        try {
+            RecordStore.deleteRecordStore(fileName);
+        } catch (RecordStoreException ex) {
+            // ex.printStackTrace();
+            Logger.outMessage("Couldn't remove from RMS", true);
+        }
+    }
+}

@@ -1,0 +1,648 @@
+<caps>
+    <cap par_name="jimm_protect" value="4A5B695D6D6D46616B6555544638" desc="[Jimm ProtectConnect]"/>
+    <cap par_name="phone_id" value="6D693A" desc="[Phone ID]"/>
+    <cap par_name="bayanICQ" value="626179616E494351" desc="[IM is bayanICQ]"/>
+    <cap par_name="server_relay" value="094613494C7F11D18222444553540000" desc="[ICQ ServerRelay]"/>
+    <cap par_name="icq_devils" value="0946134C4C7F11D18222444553540000" desc="[ICQ Devils]"/>
+    <cap par_name="utf_messages" value="0946134E4C7F11D18222444553540000" desc="[UTF8 Messages]"/>
+    <cap par_name="typing_notify" value="563FC8090B6F41BD9F79422609DFA2F3" desc="[Typing Notifications]"/>
+    <cap par_name="xtraz_support" value="1A093C6CD7FD4EC59D51A6474E34F5A0" desc="[ICQ Xtraz Support]"/>
+    <cap par_name="file_transfer" value="094613434C7F11D18222444553540000" desc="[File Transfer]"/>
+    <cap par_name="send_buddylist" value="0946134B4C7F11D18222444553540000" desc="[Send BuddyList]"/>
+    <cap par_name="addins_support" value="094613474c7f11d18222444553540000" desc="[Add-Ins Support]"/>
+    <cap par_name="chat_support" value="748F2420628711D18222444553540000" desc="[Chat Support]"/>
+    <cap par_name="push2talk" value="E362C1E9121A4B94A6267A74DE24270D" desc="[Push2Talk]"/>
+    <cap par_name="voice_chat" value="B99708B53A924202B069F1E757BB2E17" desc="[ICQ VoiceChat]"/>
+    <cap par_name="voice_chat_2" value="094613414C7F11D18222444553540000" desc="[Voice Chat]"/>
+    <cap par_name="tzerz" value="B2EC8F167C6F451BBD79DC58497888B9" desc="[ICQ-XtZers]"/>
+    <cap par_name="live_audio" value="094601044C7F11D18222444553540000" desc="[Live Audio]"/>
+    <cap par_name="live_video" value="094601014C7F11D18222444553540000" desc="[Live Video]"/>
+    <cap par_name="html_support" value="0138CA7B769A491588F213FC00979EA8" desc="[HTML Messages]"/>
+    <cap par_name="buddy_icon" value="094613464C7F11D18222444553540000" desc="[BuddyIcon]"/>
+    <cap par_name="direct_im" value="094613454C7F11D18222444553540000" desc="[DirectIM]"/>
+    <cap par_name="file_sharing" value="094613484C7F11D18222444553540000" desc="[File Sharing]"/>
+    <cap par_name="from_web" value="0946E0004C7F11D18222444553540000" desc="[From Web]"/>
+    <cap par_name="direct_connect" value="094613444C7F11D18222444553540000" desc="[ICQ DirectConnect]"/>
+    <cap par_name="icq_lite" value="178C2D9BDAA545BB8DDBF3BDBD53A10A" desc="[ICQ Lite]"/>
+    <cap par_name="infium_cap" value="7C737502C3BE4F3EA69F015313431E1A" desc="[QIP Infium]"/>
+    <cap par_name="qip2010_cap" value="7A7B7C7D7E7F0A030B04015313431E1A" desc="[QIP 2010]"/>
+    <cap par_name="qip2011_cap" value="7F7F7C7D7E7F0A030B04015313431E1A" desc="[QIP 2011]"/>
+    <cap par_name="infium_plug" value="7C533FFA68004F21BCFBC7D2439AAD31" desc="[QIP Plugins]"/>
+    <cap par_name="infium_serv" value="8C543DFC69024D25BFFAC0D3419CAF30" desc="[QIP Service]"/>
+    <cap par_name="qip2005" value="563FC8090B6F41514950203230303561" desc="[QIP 2005]"/>
+    <cap par_name="qip2005_protect" value="D3D453198B32403BACC7D1A9E2B5813E" desc="[QIP-ProtectMsg]"/>
+    <cap par_name="qip_symbian" value="51ADD1907204473DA1A149F4A397A41F" desc="[QIP Symbian]"/>
+    <cap par_name="qip_windows" value="563FC8090B6F41514950202020202021" desc="[QIP Windows]"/>
+    <cap par_name="r_n_q" value="D6687F4F3DC34BDB8A8C4C1A572763CD" desc="[RnQ]"/>
+    <cap par_name="r_n_q_2" value="522651696e73696465" desc="[RnQ]"/>
+    <cap par_name="smart_caps" value="094601FF4C7F11D18222444553540000" desc="[Smart Caps]"/>
+    <cap par_name="cap_icq_lite" value="C8953A9F21F14fAAB0B26DE663ABF5B7" desc="[ICQ Lite Caps]"/>
+    <cap par_name="rtf" value="97B12751243C4334AD22D6ABF73F1492" desc="[RTF Messages]"/>
+    <cap par_name="multi_chat" value="67361515612D4C078F3DBDE6408EA041" desc="[XMultiUser Chat]"/>
+    <cap par_name="icq_2001" value="2E7A6475FADF4DC8886FEA3595FDB6DF" desc="[ICQ2001]"/>
+    <cap par_name="icq_2002" value="10CF40D14C7F11D18222444553540000" desc="[ICQ2002]"/>
+    <cap par_name="mac_icq" value="DD16F20284E611D490DB00104B9B4B7D" desc="[MacICQ]"/>
+    <cap par_name="r_q" value="265251696E73696465" desc="[nRQ]"/>
+    <cap par_name="gateway" value="494D204761746577617920762E" desc="[Gateway]"/>
+    <cap par_name="glicq" value="476C49435100" desc="[GlICQ]"/>
+    <cap par_name="vm_icq" value="566D494351" desc="[VmICQ]"/>
+    <cap par_name="smaper" value="536D61706572" desc="[Smaper]"/>
+    <cap par_name="jimm" value="4A696D6D" desc="[Jimm]"/>
+    <cap par_name="di_chat" value="445B695D43686174" desc="[D[i]Chat]"/>
+    <cap par_name="icq_bot" value="4942435453207665722E" desc="[ICQBot.org]"/>
+    <cap par_name="qut_im" value="717574696D77" desc="[qutIM]"/>
+    <cap par_name="pigeon" value="504947454F4E21" desc="[Pigeon]"/>
+    <cap par_name="pigeon_vers" value="7665723A" desc="[Pigeon Version]"/>
+    <cap par_name="kx_icq" value="094913444C7F11D18222444553540000" desc="[KXICQ]"/>
+    <cap par_name="im_plus" value="8ECD90E74F1828F802ECD618A4E9DE68" desc="[IM+]"/>
+    <cap par_name="kopete" value="4B6F70657465204943512020" desc="[Kopete]"/>
+    <cap par_name="mchat" value="6D436861742069637120" desc="[mChat]"/>
+    <cap par_name="inlux" value="A7E40A96B3A0479AB845C9E467C56B1F" desc="[Inlux]"/>
+    <cap par_name="anastasia" value="44E5BFCEB096E547BD65EFD6A37E3602" desc="[Anastasia]"/>
+    <cap par_name="licq_1" value="4C69637120636C69656E74" desc="[LICQ]"/>
+    <cap par_name="licq_2" value="094913494C7F11D18222444553540000" desc="[LICQ]"/>
+    <cap par_name="sim_cap" value="53494D20636C69656E742020" desc="[SIM]"/>
+    <cap par_name="trillian_1" value="97B12751243C4334AD22D6ABF73F1409" desc="[Trillian]"/>
+    <cap par_name="trillian_2" value="F2E7C7F4FEAD4DFBB23536798BDF0000" desc="[Trillian]"/>
+    <cap par_name="miranda_1" value="4D494D2F4D6972616E64614C53" desc="[Miranda]"/>
+    <cap par_name="miranda_2" value="6963717080" desc="[Miranda]"/>
+    <cap par_name="miranda_3" value="6963717000" desc="[Miranda]"/>
+    <cap par_name="miranda_4" value="4D6972616E64614D80" desc="[Miranda]"/>
+    <cap par_name="miranda_5" value="4D6972616E64614D00" desc="[Miranda]"/>
+    <cap par_name="loc_id" value="4C6F634944" desc="[LocID]"/>
+    <cap par_name="miranda_custom" value="094600004c7f11d1822244455354134b" desc="[Miranda IM Custom Pack]"/>
+    <cap par_name="direct_play" value="094613424C7F11D18222444553540000" desc="[DirectPlay]"/>
+    <cap par_name="icq_interop" value="0946134D4C7F11D18222444553540000" desc="[ICQ Interop]"/>
+    <cap par_name="games_support" value="0946134A4C7F11D18222444553540000" desc="[Games Support]"/>
+    <cap par_name="bayan_crypt" value="626179616E4352595054454E47494E45" desc="[bayanICQ ProtectMsg]"/>
+    <cap par_name="mobile_agent" value="DEADBEEF01" desc="[IM is MobileAgent(Symbian)]"/>
+    <cap par_name="mandarin" value="4D616E646172696E20494D" desc="[IM is Mandarin(Java)]"/>
+    <cap par_name="icq_symbian" value="73796D6269616E49435120" desc="[ICQ Symbian]"/>
+</caps>
+<clients>
+<client par_name="QIP 2010 %" pic="14">
+    <caps>
+        <cap par_name="qip2010_cap"/>
+    </caps>
+    <version from="dc_info1" method="dc_int"/>
+</client>
+<client par_name="QIP 2011 (3.%)" pic="14">
+    <caps>
+        <cap par_name="qip2011_cap"/>
+    </caps>
+    <proto version="11"/>
+    <version from="dc_info1" method="dc_int"/>
+</client>
+<client par_name="QIP Infium %" pic="14">
+    <caps>
+        <cap par_name="infium_cap"/>
+    </caps>
+    <version from="dc_info1" method="dc_int"/>
+</client>
+<client par_name="BayanICQ %" pic="32">
+    <caps>
+        <cap par_name="bayanICQ"/>
+    </caps>
+    <version from="bayanICQ" method="cap" index="8"/>
+</client>
+<client par_name="Mobile Agent %(Symbian)" pic="">
+    <caps>
+        <cap par_name="mobile_agent"/>
+    </caps>
+    <version from="mobile_agent" method="cap" index="5"/>
+</client>
+<client par_name="QIP 2005 % masked" pic="00">
+    <dc_info2 value="00000000"/>
+    <dc_info3 value="00000000"/>
+    <caps>
+        <cap par_name="qip2005"/>
+    </caps>
+    <no_caps>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+    <version from="dc_info1" method="dc_nums"/>
+</client>
+<client par_name="qutIM [QIP 2005 %]" pic="">
+    <version from="dc_info1" method="dc_nums"/>
+    <caps>
+        <cap par_name="qip2005"/>
+        <cap par_name="buddy_icon"/>
+    </caps>
+    <no_caps>
+        <cap par_name="qip2005_protect"/>
+        <cap par_name="xtraz_support"/>
+        <cap par_name="direct_im"/>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+    <dc_info2 value="0000000E"/>
+    <dc_info3 value="0000000F"/>
+</client>
+<client par_name="QIP Infium [QIP 2005 %]" pic="14">
+    <version from="dc_info1" method="dc_nums"/>
+    <caps>
+        <cap par_name="qip2005"/>
+    </caps>
+    <no_caps>
+        <cap par_name="qip2005_protect"/>
+        <cap par_name="xtraz_support"/>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+    <dc_info2 value="0000000E"/>
+    <dc_info3 value="0000000F"/>
+</client>
+<client par_name="QIP 2005 %" pic="00">
+    <version from="dc_info1" method="dc_nums"/>
+    <caps>
+        <cap par_name="qip2005"/>
+    </caps>
+    <no_caps>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+    <dc_info2 value="0000000E"/>
+    <dc_info3 value="0000000F"/>
+</client>
+<client par_name="MDC" pic="">
+    <caps>
+        <cap par_name="typing_notify"/>
+        <cap par_name="tzerz"/>
+        <cap par_name="html_support"/>
+        <cap par_name="rtf"/>
+        <cap par_name="multi_chat"/>
+        <cap par_name="icq_lite"/>
+    </caps>
+    <no_caps>
+        <cap par_name="direct_connect"/>
+        <cap par_name="chat_support"/>
+        <cap par_name="send_buddylist"/>
+    </no_caps>
+</client>
+<client par_name="QIP Infium [ICQ 6]" pic="14">
+    <caps>
+        <cap par_name="typing_notify"/>
+        <cap par_name="file_transfer"/>
+        <cap par_name="xtraz_support"/>
+        <cap par_name="html_support"/>
+        <cap par_name="tzerz"/>
+        <cap par_name="multi_chat"/>
+        <cap par_name="icq_lite"/>
+    </caps>
+    <no_caps>
+        <cap par_name="direct_connect"/>
+        <cap par_name="chat_support"/>
+        <cap par_name="send_buddylist"/>
+        <cap par_name="rtf"/>
+    </no_caps>
+    <proto version="9"/>
+</client>
+<client par_name="ICQ 7" pic="">
+    <proto version="9"/>
+    <caps>
+        <cap par_name="smart_caps"/>
+        <cap par_name="file_transfer"/>
+        <cap par_name="live_audio"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="live_video"/>
+        <cap par_name="xtraz_support"/>
+        <cap par_name="chat_support"/>
+        <cap par_name="tzerz"/>
+        <cap par_name="cap_icq_lite"/>
+        <cap par_name="send_buddylist"/>
+        <cap par_name="buddy_icon"/>
+    </caps>
+    <no_caps>
+        <cap par_name="server_relay"/>
+    </no_caps>
+</client>
+<client par_name="ICQ 6.5" pic="15">
+    <proto version="9"/>
+    <caps>
+        <cap par_name="typing_notify"/>
+        <cap par_name="tzerz"/>
+        <cap par_name="html_support"/>
+        <cap par_name="icq_lite"/>
+        <cap par_name="multi_chat"/>
+        <cap par_name="send_buddylist"/>
+    </caps>
+    <no_caps>
+        <cap par_name="direct_connect"/>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+</client>
+<client par_name="Jimm [ICQ]" pic="07">
+    <proto version="9"/>
+    <caps>
+        <cap par_name="typing_notify"/>
+        <cap par_name="rtf"/>
+        <cap par_name="icq_lite"/>
+        <cap par_name="multi_chat"/>
+        <cap par_name="icq_devils"/>
+        <cap par_name="html_support"/>
+    </caps>
+    <no_caps>
+        <cap par_name="push2talk"/>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+</client>
+<client par_name="nRQ" pic="02">
+    <version from="dc_info2" method="dc_dots"/>
+    <no_caps>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+    <proto version="7"/>
+    <dc_info1 value="FFFFFF7F"/>
+</client>
+<client par_name="nRQ" pic="02">
+    <caps>
+        <cap par_name="r_q"/>
+    </caps>
+    <no_caps>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+</client>
+<client par_name="MacICQ" pic="22">
+    <proto version="7"/>
+    <caps>
+        <cap par_name="mac_icq"/>
+    </caps>
+    <no_caps>
+        <cap par_name="miranda_1"/>
+        <cap par_name="miranda_2"/>
+        <cap par_name="miranda_3"/>
+        <cap par_name="miranda_4"/>
+        <cap par_name="miranda_5"/>
+    </no_caps>
+</client>
+<client par_name="Miranda 0.%" pic="01">
+    <version from="miranda_2" method="cap_dots" index="5" count="3"/>
+    <caps>
+        <cap par_name="miranda_2"/>
+    </caps>
+</client>
+<client par_name="Miranda 0.%(alpha)" pic="01">
+    <version from="miranda_3" method="cap_dots" index="5" count="3"/>
+    <caps>
+        <cap par_name="miranda_3"/>
+    </caps>
+</client>
+<client par_name="Miranda 0.%(alpha)" pic="01">
+    <version from="miranda_4" method="cap_dots" index="9" count="3"/>
+    <caps>
+        <cap par_name="miranda_4"/>
+    </caps>
+</client>
+<client par_name="Miranda 0.%" pic="01">
+    <version from="miranda_5" method="cap_dots" index="9" count="3"/>
+    <caps>
+        <cap par_name="miranda_5"/>
+    </caps>
+</client>
+<client par_name="Miranda" pic="01">
+    <caps>
+        <cap par_name="miranda_custom"/>
+    </caps>
+</client>
+<client par_name="mChat" pic="21">
+    <version from="mchat" method="cap" index="10"/>
+    <caps>
+        <cap par_name="mchat"/>
+    </caps>
+</client>
+<client par_name="QIP PDA(Symbian)" pic="12">
+    <caps>
+        <cap par_name="qip_symbian"/>
+    </caps>
+</client>
+<client par_name="QIP PDA(Windows)" pic="13">
+    <caps>
+        <cap par_name="qip_windows"/>
+    </caps>
+</client>
+<client par_name="Smaper" pic="28">
+    <version from="smaper" method="cap" index="7"/>
+    <caps>
+        <cap par_name="smaper"/>
+    </caps>
+</client>
+<client par_name="RnQ" pic="03">
+    <version from="dc_info2" method="dc_int"/>
+    <dc_info1 value="FFFFF666"/>
+</client>
+<client par_name="RnQ" pic="03">
+    <caps>
+        <cap par_name="r_n_q"/>
+    </caps>
+</client>
+<client par_name="RnQ" pic="03">
+    <caps>
+        <cap par_name="r_n_q_2"/>
+    </caps>
+</client>
+<client par_name="StICQ" pic="08">
+    <proto version="2"/>
+    <caps>
+        <cap par_name="server_relay"/>
+        <cap par_name="direct_connect"/>
+    </caps>
+</client>
+<client par_name="SIM" pic="05">
+    <version from="sim_cap" method="cap_dots" index="12"/>
+    <caps>
+        <cap par_name="sim_cap"/>
+    </caps>
+</client>
+<client par_name="Trillian" pic="04">
+    <caps>
+        <cap par_name="trillian_1"/>
+    </caps>
+    <no_caps>
+        <cap par_name="smart_caps"/>
+    </no_caps>
+</client>
+<client par_name="Trillian" pic="04">
+    <caps>
+        <cap par_name="trillian_2"/>
+        <cap par_name="utf_messages"/>
+    </caps>
+    <no_caps>
+        <cap par_name="smart_caps"/>
+    </no_caps>
+</client>
+<client par_name="Jimm" pic="07">
+    <version from="jimm" method="cap" index="5"/>
+    <caps>
+        <cap par_name="jimm"/>
+    </caps>
+</client>
+<client par_name="Jimm" pic="07">
+    <proto version="8"/>
+    <dc_info1 value="0000FFFE"/>
+    <dc_info3 value="0000FFFE"/>
+</client>
+<client par_name="Jimm" pic="07">
+    <dc_info1 value="FFFFFFFE"/>
+    <dc_info3 value="FFFFFFFE"/>
+</client>
+<client par_name="Jimm" pic="07">
+    <dc_info1 value="FFFFF777"/>
+</client>
+<client par_name="LICQ" pic="25">
+    <caps>
+        <cap par_name="licq_1"/>
+    </caps>
+</client>
+<client par_name="LICQ" pic="25">
+    <caps>
+        <cap par_name="licq_2"/>
+    </caps>
+</client>
+<client par_name="IM+" pic="">
+    <caps>
+        <cap par_name="im_plus"/>
+    </caps>
+</client>
+<client par_name="Kopete" pic="06">
+    <version from="kopete" method="cap_dots" index="12"/>
+    <caps>
+        <cap par_name="kopete"/>
+    </caps>
+</client>
+<client par_name="KXICQ" pic="">
+    <caps>
+        <cap par_name="kx_icq"/>
+    </caps>
+</client>
+<client par_name="Inlux" pic="">
+    <caps>
+        <cap par_name="inlux"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="typing_notify"/>
+    </caps>
+</client>
+<client par_name="VmICQ" pic="11">
+    <version from="vm_icq" method="cap" index="6"/>
+    <caps>
+        <cap par_name="vm_icq"/>
+    </caps>
+</client>
+<client par_name="D[i]Chat" pic="29">
+    <version from="di_chat" method="cap" index="9"/>
+    <caps>
+        <cap par_name="di_chat"/>
+    </caps>
+</client>
+<client par_name="Pigeon!" pic="24">
+    <caps>
+        <cap par_name="pigeon"/>
+        <cap par_name="pigeon_vers"/>
+    </caps>
+    <version from="pigeon_vers" method="pigeon_vers" index="4"/>
+</client>
+<client par_name="Pigeon! Fake!" pic="24">
+    <caps>
+        <cap par_name="pigeon"/>
+    </caps>
+</client>
+<client par_name="IcqBot.org" pic="">
+    <version from="icq_bot" method="cap" index="10"/>
+    <caps>
+        <cap par_name="icq_bot"/>
+    </caps>
+</client>
+<client par_name="Anastasia" pic="">
+    <caps>
+        <cap par_name="anastasia"/>
+    </caps>
+</client>
+<client par_name="qutIM % (Windows)" pic="">
+    <version from="qut_im" method="cap_dots" index="6" count="3"/>
+    <caps>
+        <cap par_name="qut_im"/>
+    </caps>
+</client>
+<client par_name="IM Gateway" pic="">
+    <version from="gateway" method="cap" index="13"/>
+    <caps>
+        <cap par_name="gateway"/>
+    </caps>
+</client>
+<client par_name="Slick" pic="">
+    <proto version="0"/>
+    <caps>
+        <cap par_name="file_transfer"/>
+        <cap par_name="direct_connect"/>
+        <cap par_name="file_sharing"/>
+        <cap par_name="server_relay"/>
+        <cap par_name="utf_messages"/>
+    </caps>
+</client>
+<client par_name="PyICQ (Jabber transport)" pic="">
+    <proto version="0"/>
+    <only_caps>
+        <cap par_name="buddy_icon"/>
+        <cap par_name="utf_messages"/>
+    </only_caps>
+</client>
+<client par_name="PyICQ (Jabber transport)" pic="">
+    <proto version="0"/>
+    <caps>
+        <cap par_name="buddy_icon"/>
+        <cap par_name="icq_lite"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="xtraz_support"/>
+    </caps>
+    <no_caps>
+        <cap par_name="chat_support"/>
+    </no_caps>
+</client>
+<client par_name="meebo.com" pic="">
+    <proto version="0"/>
+    <only_caps>
+        <cap par_name="chat_support"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="buddy_icon"/>
+    </only_caps>
+</client>
+<client par_name="QIP 2005a [ICQ2Go!]" pic="00">
+    <proto version="7"/>
+    <only_caps>
+        <cap par_name="utf_messages"/>
+        <cap par_name="typing_notify"/>
+    </only_caps>
+    <no_caps>
+        <cap par_name="html_support"/>
+        <cap par_name="direct_connect"/>
+        <cap par_name="chat_support"/>
+        <cap par_name="rtf"/>
+        <cap par_name="server_relay"/>
+        <cap par_name="send_buddylist"/>
+        <cap par_name="file_transfer"/>
+        <cap par_name="icq_lite"/>
+        <cap par_name="from_web"/>
+    </no_caps>
+</client>
+<client par_name="QIP 2005a [ICQ Lite]" pic="00">
+    <proto version="9"/>
+    <caps>
+        <cap par_name="typing_notify"/>
+        <cap par_name="rtf"/>
+        <cap par_name="server_relay"/>
+        <cap par_name="utf_messages"/>
+    </caps>
+    <no_caps>
+        <cap par_name="icq_lite"/>
+        <cap par_name="xtraz_support"/>
+        <cap par_name="multi_chat"/>
+    </no_caps>
+</client>
+<client par_name="GlICQ %" pic="">
+    <version from="glicq" method="cap_dots" index="6" count="2"/>
+    <caps>
+        <cap par_name="glicq"/>
+    </caps>
+</client>
+<client par_name="Mail.Ru Agent" pic="">
+    <proto version="9"/>
+    <caps>
+        <cap par_name="typing_notify"/>
+        <cap par_name="server_relay"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="xtraz_support"/>
+        <cap par_name="icq_devils"/>
+        <cap par_name="html_support"/>
+        <cap par_name="multi_chat"/>
+        <cap par_name="tzerz"/>
+    </caps>
+</client>
+<client par_name="Adium" pic="">
+    <proto version="0"/>
+    <only_caps>
+        <cap par_name="file_transfer"/>
+        <cap par_name="direct_im"/>
+        <cap par_name="buddy_icon"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="typing_notify"/>
+        <cap par_name="chat_support"/>
+    </only_caps>
+</client>
+<client par_name="QIP 2005a [AOL AIM]" pic="00">
+    <proto version="0"/>
+    <caps>
+        <cap par_name="chat_support"/>
+        <cap par_name="file_transfer"/>
+        <cap par_name="send_buddylist"/>
+        <cap par_name="addins_support"/>
+        <cap par_name="buddy_icon"/>
+        <cap par_name="direct_im"/>
+    </caps>
+    <no_caps>
+        <cap par_name="html_support"/>
+        <cap par_name="typing_notify"/>
+        <cap par_name="direct_connect"/>
+        <cap par_name="rtf"/>
+        <cap par_name="utf_messages"/>
+        <cap par_name="server_relay"/>
+        <cap par_name="icq_lite"/>
+        <cap par_name="from_web"/>
+        <cap par_name="trillian_2"/>
+        <cap par_name="smart_caps"/>
+    </no_caps>
+</client>
+<client par_name="Jimm LocID" pic="30">
+    <caps>
+        <cap par_name="loc_id"/>
+    </caps>
+</client>
+<client par_name="ICQ Symbian" pic="">
+    <caps>
+        <cap par_name="icq_symbian"/>
+    </caps>
+    <version from="icq_symbian" method="cap" index="11"/>
+</client>
+<client par_name="Jimm RC" pic="31">
+    <dc_info1 value="48200903"/>
+    <dc_info3 value="48200903"/>
+    <version from="dc_info2" method="dc_nums"/>
+</client>
+<client par_name="Mandarin" pic="">
+    <dc_info1 value="77657868"/>
+    <version from="dc_info2" method="dc_nums"/>
+</client>
+<client par_name="Mandarin" pic="">
+    <caps>
+        <cap par_name="mandarin"/>
+    </caps>
+    <version from="mandarin" method="cap" index="12"/>
+</client>
+</clients>

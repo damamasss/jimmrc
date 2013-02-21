@@ -1,0 +1,51 @@
+<!--
+/*******************************************************************************
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+*******************************************************************************/
+-->
+
+<project name="Sijapp" default="dist">
+
+    <!-- Set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+
+    <!-- Buildfile description -->
+    <description>Compiler from .lang to .lng files.</description>
+
+    <!-- Internal target: compile -->
+    <target name="compile">
+        <mkdir dir="${build}/classes"/>
+        <javac srcdir="${src}"
+               destdir="${build}/classes">
+        </javac>
+    </target>
+
+    <!-- Target: dist -->
+    <target name="dist" depends="compile" description="Generate the distribution">
+        <mkdir dir="${dist}/lib"/>
+        <jar jarfile="${dist}/lib/langs.jar">
+            <fileset dir="${build}/classes"/>
+        </jar>
+    </target>
+
+    <!-- Target: clean -->
+    <target name="clean" description="Clean the distribution">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+</project>

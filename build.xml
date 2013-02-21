@@ -1,0 +1,553 @@
+<!-- 
+********************************************************************************
+Jimm - Mobile Messaging - J2ME ICQ clone
+Copyright (C) 2003-05  Jimm Project
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+********************************************************************************
+File: build.xml
+Version: ###VERSION###  Date: ###DATE###
+Author(s): Manuel Linsmayer, Andreas Rossbacher
+********************************************************************************
+-->
+
+<project name="Jimm" default="dist">
+
+
+    <!--  *******************************************************************   -->
+    <!--  CONFIGURATION SECTION - CHANGE VALUES TO REFLECT YOUR ENVIRONMENT     -->
+    <!--  *******************************************************************   -->
+    <!--  Change this to the directory where a MIDP SDK is installed. You can   -->
+    <!--  use both the slash and the backslash for separating path              -->
+    <!--  components.                                                           -->
+    <property name="DEFAULT/midp" value="CHANGE ME"/>
+    <property name="MIDP2/midp" value="C:\Program Files\WTC"/>
+    <property name="RIM/midp" value="CHANGE ME"/>
+    <property name="SIEMENS1/midp" value="CHANGE ME"/>
+    <property name="SIEMENS2/midp" value="CHANGE ME"/>
+    <property name="MOTOROLA/midp" value="CHANGE ME"/>
+    <!--  *******************************************************************   -->
+    <!--  This property must point at the MIDP API classes and all extension    -->
+    <!--  classes required by the chosen target.                                -->
+    <property name="DEFAULT/midp/lib" value="${DEFAULT/midp}/lib/cldcapi10.jar;${DEFAULT/midp}/lib/midpapi10.jar"/>
+    <!--<property name="MIDP2/midp/lib" value="${MIDP2/midp}/lib/cldcapi11.jar;${MIDP2/midp}/lib/midpapi21.jar;${MIDP2/midp}/lib/mmapi.jar;${MIDP2/midp}/lib/jsr75.jar;${MIDP2/midp}/lib/wma20.jar;${MIDP2/midp}/lib/nokiaext.jar;${MIDP2/midp}/lib/jsr234.jar"/>-->
+    <property name="MIDP2/midp/lib"
+              value="${MIDP2/midp}/lib/cldcapi10.jar;${MIDP2/midp}/lib/midpapi20.jar;${MIDP2/midp}/lib/mmapi.jar;${MIDP2/midp}/lib/jsr75.jar;${MIDP2/midp}/lib/wma20.jar;${MIDP2/midp}/lib/nokiaext.jar;${MIDP2/midp}/lib/jsr234.jar"/>
+    <property name="RIM/midp/lib" value="${RIM/midp}/lib/net_rim_api.jar"/>
+    <property name="SIEMENS1/midp/lib" value="${SIEMENS1/midp}/lib/API_1.jar"/>
+    <property name="SIEMENS2/midp/lib" value="${SIEMENS2/midp}/lib/api.jar;res/SIEMENS2/lib/fileaccess.jar"/>
+    <property name="MOTOROLA/midp/lib"
+              value="${MIDP2/midp}/lib/cldcapi10.jar;${MIDP2/midp}/lib/midpapi20.jar;${MIDP2/midp}/lib/mmapi.jar;res/MOTOROLA/lib/fileaccess.jar;${MIDP2/midp}/lib/jsr75.jar"/>
+    <!--  *******************************************************************   -->
+    <!--  Change this to the directory where ProGuard is installed. You can     -->
+    <!--  use both the slash and the backslash for separating path components.  -->
+	<!--  use C:\Program Files\Java_build\proguard40						  	-->
+    <property name="proguard" value="C:\Program Files\Java_build\proguard"/>
+    <!--  *******************************************************************   -->
+    <!--  This property must point at the ProGuard JAR file, normally found     -->
+    <!--  in the lib directory of the ProGuard distribution.                    -->
+    <property name="proguard/lib" value="${proguard}/lib/proguard.jar"/>
+    <!--  *******************************************************************   -->
+    <!--  CUSTOMIZATION SECTION - CHANGE VALUES TO GET YOUR CUSTOM BUILD        -->
+    <!--  *******************************************************************   -->
+    <!--  Build target. Currently there are the following build available:      -->
+    <!--      DEFAULT  - Standard MIDP1                                         -->
+    <!--      SIEMENS1  - For Siemens MIDP1-devices (like the x55 series        -->
+    <!--      SIEMENS2 - For Siemens MIDP2-devices (like the x65 series         -->
+    <!--      MIDP2    - Standard MIDP2                                         -->
+    <!--      RIM      - For RIM Blackberry devices                             -->
+    <!--      MOTOROLA - For Motorola MIDP2 devices                             -->
+    <property name="target" value="MIDP2"/>
+    <!--  *******************************************************************   -->
+    <!--  This value is a comma separated list of modules which should be       -->
+    <!--  included in the build. Realised modules are:                          -->
+    <!--      SOUNDS - module sound					                           	-->
+    <!--      HISTORY - module for storing history of text messages             -->
+    <!--      FILES   - module for transferring files                           -->
+    <!--      SMILES  - module for using emotions int messages text             -->
+    <!--      PROXY   - module for connecting via a socks proxy                 -->
+    <!--      HTTP   - module for connecting via a http                			-->
+    <!--      LIGHT   - module for using light                					-->
+    <!--      MAGIC_EYE   - module of task manager                              -->
+    <!--      GIFSMILES - animated GIF smiles                                   -->
+    <!--      ANISMILES - animated PNG smiles                                   -->
+    <!--      GFONT  - module graphik font		   			                    -->
+    <!--      CLASSIC_CHAT  - module classic chat		   			            -->
+    <!--      PANEL  - module bottom panel		   			                    -->
+    <!--      DEBUGLOG  - module for test	   			                        -->
+    <!--      TOUCH2  - module for pressed phone	   			                -->
+    <!--      TOOLBAR  - module for sensor screens	   			                -->
+    <!--      TUNER  - module for listen radio  	 			                -->
+    <!--      SYSMANAGER  - module for platform info	   			            -->
+    <!--      PARTNERS  - module for trade	   			            			-->
+    <!--      SBOLTUN  - module sBoltun		   			            			-->
+    <property name="modules" value="SOUNDS,ANISMILES,HISTORY,FILES,PANEL,TOOLBAR,SYSMANAGER,MAGIC_EYE,GFONT,CLASSIC_CHAT,SBOLTUN"/>
+    <!--  *******************************************************************   -->
+    <!--  This value is a comma separated list of languages packs which         -->
+    <!--  should be included in the build. Currently, the distribution          -->
+    <!--  includes English (EN), Bulgarian (BG), Brazilian Portuguese (BR),     -->
+    <!--  Czech (CZ), German (DE), Spanish (ES), Hewbrew (HE), Italian (IT),    -->
+    <!--  Lithuanian (LT), Polish (PL), Russian (RU), Swedish (SE),             -->
+    <!--  Serbian (SR) and Ukrainian(UA) language packs.                        -->
+    <property name="lang" value="RU"/>
+    <!--  *******************************************************************   -->
+    <!--  Version number of the build. The value can be in any format (e.g.     -->
+    <!--  0.2cvs).                                                              -->
+    <property name="version/jimm" value="1.2.x"/>
+    <!--  *******************************************************************   -->
+    <!--  Version number of the build in the standardized format                -->
+    <!--  <major>[.<minor>[.<micro>]] (e.g. 0.2.1). This value should           -->
+    <!--  correspond to the version property (see above).                       -->
+    <property name="version/java" value="jdk-version"/>
+    <!--  *******************************************************************   -->
+    <!--  CHANGE NOTHING BELOW THIS LINE, UNLESS YOU KNOW WHAT YOU'RE DOING     -->
+    <!--  *******************************************************************   -->
+
+
+    <!--  Buildfile description   -->
+    <description>This buildfile is used to build Jimm, a native ICQ clone for Java 2 Platform Micro Edition.
+    </description>
+
+    <!--  Set global properties for this build   -->
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+    <property name="src" location="src"/>
+    <property name="res" location="res"/>
+    <property name="res/all" location="res/ALL_TARGETS"/>
+    <property name="res/target" location="${res}/${target}"/>
+    <property name="util" location="util"/>
+    <property name="util/sijapp" location="${util}/sijapp"/>
+    <property name="util/sijapp/lib" location="${util/sijapp}/dist/lib/sijapp.jar"/>
+    <property name="util/langs" location="${util}/langs"/>
+    <property name="util/langs/lib" location="${util/langs}/dist/lib/langs.jar"/>
+    <property name="util/jarsizetask" location="${util}/jarsizetask"/>
+    <property name="util/jarsizetask/lib" location="${util/jarsizetask}/dist/lib/jarsizetask.jar"/>
+    <property name="util/jlft" location="${util}/jlft"/>
+
+    <!--  Auxiliary property   -->
+    <property name="3ns" value="###"/>
+
+    <!--  Register Proguard task  -->
+    <taskdef name="proguard" classname="proguard.ant.ProGuardTask" classpath="${proguard/lib}"/>
+
+    <!--  Internal target: init   -->
+    <target name="init">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+        <tstamp>
+            <format property="date" pattern="dd.MM.yyyy" timezone="GMT+04:00"/>
+        </tstamp>
+        <condition property="midp" value="${DEFAULT/midp}">
+            <equals arg1="${target}" arg2="DEFAULT"/>
+        </condition>
+        <condition property="midp" value="${SIEMENS1/midp}">
+            <equals arg1="${target}" arg2="SIEMENS1"/>
+        </condition>
+        <condition property="midp" value="${SIEMENS2/midp}">
+            <equals arg1="${target}" arg2="SIEMENS2"/>
+        </condition>
+        <condition property="midp" value="${MIDP2/midp}">
+            <equals arg1="${target}" arg2="MIDP2"/>
+        </condition>
+        <condition property="midp" value="${RIM/midp}">
+            <equals arg1="${target}" arg2="RIM"/>
+        </condition>
+        <condition property="midp" value="${MOTOROLA/midp}">
+            <equals arg1="${target}" arg2="MOTOROLA"/>
+        </condition>
+        <condition property="midp/lib" value="${DEFAULT/midp/lib}">
+            <equals arg1="${target}" arg2="DEFAULT"/>
+        </condition>
+        <condition property="midp/lib" value="${SIEMENS1/midp/lib}">
+            <equals arg1="${target}" arg2="SIEMENS1"/>
+        </condition>
+        <condition property="midp/lib" value="${SIEMENS2/midp/lib}">
+            <equals arg1="${target}" arg2="SIEMENS2"/>
+        </condition>
+        <condition property="midp/lib" value="${MIDP2/midp/lib}">
+            <equals arg1="${target}" arg2="MIDP2"/>
+        </condition>
+        <condition property="midp/lib" value="${RIM/midp/lib}">
+            <equals arg1="${target}" arg2="RIM"/>
+        </condition>
+        <condition property="midp/lib" value="${MOTOROLA/midp/lib}">
+            <equals arg1="${target}" arg2="MOTOROLA"/>
+        </condition>
+        <condition property="midp_profile" value="MIDP-1.0">
+            <equals arg1="${target}" arg2="DEFAULT"/>
+        </condition>
+        <condition property="midp_profile" value="MIDP-1.0">
+            <equals arg1="${target}" arg2="SIEMENS1"/>
+        </condition>
+        <condition property="midp_profile" value="MIDP-2.0">
+            <equals arg1="${target}" arg2="SIEMENS2"/>
+        </condition>
+        <condition property="midp_profile" value="MIDP-2.0">
+            <equals arg1="${target}" arg2="MIDP2"/>
+        </condition>
+        <condition property="midp_profile" value="MIDP-1.0">
+            <equals arg1="${target}" arg2="RIM"/>
+        </condition>
+        <condition property="midp_profile" value="MIDP-2.0">
+            <equals arg1="${target}" arg2="MOTOROLA"/>
+        </condition>
+    </target>
+
+    <!--  Internal target: sijapp   -->
+    <target name="sijapp">
+        <ant dir="${util/sijapp}" inheritAll="false"/>
+        <taskdef name="sijapp" classname="sijapp.SijappTask" classpath="${util/sijapp/lib}"/>
+    </target>
+
+    <!--  Internal target: langs   -->
+    <target name="langs">
+        <ant dir="${util/langs}" inheritAll="false"/>
+        <taskdef name="langs" classname="langs.LangsTask" classpath="${util/langs/lib}"/>
+    </target>
+
+    <!--  Internal target: preprocess-source   -->
+    <target name="preprocess-source" depends="init,sijapp,langs">
+        <condition property="modules/SOUNDS" value="true">
+            <contains string="${modules}" substring="SOUNDS"/>
+        </condition>
+        <condition property="sounds_dir" value="res/MODULES/SOUNDS">
+            <and>
+                <contains string="MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/SOUNDS}"/>
+            </and>
+        </condition>
+        <condition property="modules/MAGIC_EYE" value="true">
+            <contains string="${modules}" substring="MAGIC_EYE"/>
+        </condition>
+        <condition property="modules/DEBUGLOG" value="true">
+            <contains string="${modules}" substring="DEBUGLOG"/>
+        </condition>
+        <condition property="modules/HISTORY" value="true">
+            <contains string="${modules}" substring="HISTORY"/>
+        </condition>
+        <condition property="modules/PROXY" value="true">
+            <contains string="${modules}" substring="PROXY"/>
+        </condition>
+        <condition property="modules/HTTP" value="true">
+            <contains string="${modules}" substring="HTTP"/>
+        </condition>
+        <condition property="modules/LIGHT" value="true">
+            <contains string="${modules}" substring="LIGHT"/>
+        </condition>
+        <condition property="modules/FILES" value="true">
+            <contains string="${modules}" substring="FILES"/>
+        </condition>
+        <condition property="files_dir" value="res/MODULES/FILES">
+            <and>
+                <contains string="${modules}" substring="FILES"/>
+                <istrue value="${modules/FILES}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/GIFSMILES" value="true">
+            <contains string="${modules}" substring="GIFSMILES"/>
+        </condition>
+
+        <condition property="gifsmiles_dir" value="res/MODULES/GIFSMILES">
+            <and>
+                <contains string="SIEMENS2,MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/GIFSMILES}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/ANISMILES" value="true">
+            <contains string="${modules}" substring="ANISMILES"/>
+        </condition>
+
+        <condition property="anismiles_dir" value="res/MODULES/ANISMILES">
+            <and>
+                <contains string="SIEMENS2,MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/ANISMILES}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/SMILES" value="true">
+            <contains string="${modules}" substring="SMILES"/>
+        </condition>
+
+        <condition property="smiles_dir" value="res/MODULES/SMILES">
+            <and>
+                <contains string="SIEMENS2,MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/SMILES}"/>
+                <isfalse value="${modules/GIFSMILES}"/>
+                <isfalse value="${modules/ANISMILES}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/GFONT" value="true">
+            <contains string="${modules}" substring="GFONT"/>
+        </condition>
+
+        <condition property="gfont_dir" value="res/MODULES/GFONT">
+            <and>
+                <contains string="SIEMENS2,MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/GFONT}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/CLASSIC_CHAT" value="true">
+            <contains string="${modules}" substring="CLASSIC_CHAT"/>
+        </condition>
+
+        <condition property="clchat_dir" value="res/MODULES/CLASSIC_CHAT">
+            <and>
+                <contains string="SIEMENS2,MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/CLASSIC_CHAT}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/PANEL" value="true">
+            <contains string="${modules}" substring="PANEL"/>
+        </condition>
+
+        <condition property="modules/TOUCH2" value="true">
+            <contains string="${modules}" substring="TOUCH2"/>
+        </condition>
+
+        <condition property="modules/ABC" value="true">
+            <contains string="${modules}" substring="ABC"/>
+        </condition>
+
+        <condition property="modules/TOOLBAR" value="true">
+            <contains string="${modules}" substring="TOOLBAR"/>
+        </condition>
+
+        <condition property="toolbars_dir" value="res/MODULES/TOOLBAR">
+            <and>
+                <contains string="MIDP2,MOTOROLA" substring="${target}"/>
+                <istrue value="${modules/TOOLBAR}"/>
+            </and>
+        </condition>
+
+        <condition property="modules/TUNER" value="true">
+            <contains string="${modules}" substring="TUNER"/>
+        </condition>
+		
+		<condition property="modules/SYSMANAGER" value="true">
+            <contains string="${modules}" substring="SYSMANAGER"/>
+        </condition>
+		
+		<condition property="modules/PARTNERS" value="true">
+            <contains string="${modules}" substring="PARTNERS"/>
+        </condition>
+		
+		<condition property="modules/SBOLTUN" value="true">
+            <contains string="${modules}" substring="SBOLTUN"/>
+        </condition>
+		
+		<condition property="sboltun_dir" value="res/MODULES/SBOLTUN">
+            <and>
+                <istrue value="${modules/SBOLTUN}"/>
+            </and>
+        </condition>
+
+        <condition property="schemes_dir" value="res/MODULES/SCHEMES">
+            <contains string="${modules}" substring=""/>
+        </condition>
+
+        <mkdir dir="${build}/init/src"/>
+        <sijapp srcdir="${src}" destdir="${build}/init/src">
+            <define name="target" value="${target}"/>
+            <define name="modules_SOUNDS" value="${modules/SOUNDS}"/>
+            <define name="modules_MAGIC_EYE" value="${modules/MAGIC_EYE}"/>
+            <define name="modules_DEBUGLOG" value="${modules/DEBUGLOG}"/>
+            <define name="modules_HISTORY" value="${modules/HISTORY}"/>
+            <define name="modules_PROXY" value="${modules/PROXY}"/>
+            <define name="modules_HTTP" value="${modules/HTTP}"/>
+            <define name="modules_LIGHT" value="${modules/LIGHT}"/>
+            <define name="modules_FILES" value="${modules/FILES}"/>
+            <define name="modules_SMILES" value="${modules/SMILES}"/>
+            <define name="modules_GIFSMILES" value="${modules/GIFSMILES}"/>
+            <define name="modules_ANISMILES" value="${modules/ANISMILES}"/>
+            <define name="modules_GFONT" value="${modules/GFONT}"/>
+            <define name="modules_CLASSIC_CHAT" value="${modules/CLASSIC_CHAT}"/>
+            <define name="modules_PANEL" value="${modules/PANEL}"/>
+            <define name="modules_TOUCH2" value="${modules/TOUCH2}"/>
+            <define name="modules_ABC" value="${modules/ABC}"/>
+            <define name="modules_TOOLBAR" value="${modules/TOOLBAR}"/>
+            <define name="modules_TUNER" value="${modules/TUNER}"/>
+            <define name="modules_SYSMANAGER" value="${modules/SYSMANAGER}"/>
+            <define name="modules_PARTNERS" value="${modules/PARTNERS}"/>
+            <define name="modules_SBOLTUN" value="${modules/SBOLTUN}"/>
+        </sijapp>
+        <replace dir="${build}/init/src" encoding="UTF-8">
+            <replacefilter token="${3ns}VERSION${3ns}" value="${version/jimm}"/>
+            <replacefilter token="${3ns}VERSION-JAVA${3ns}" value="${version/java}"/>
+            <replacefilter token="${3ns}DATE${3ns}" value="${date}"/>
+            <replacefilter token="${3ns}TARGET${3ns}" value="${target}"/>
+            <replacefilter token="${3ns}MODULES${3ns}" value="${modules}"/>
+        </replace>
+        <mkdir dir="${build}/res"/>
+        <langs languages="${lang}" inDir="${build}/init/src/lng" outDir="${build}/res" srcDir="${build}/init/src/"
+               idealLang="EN"/>
+    </target>
+
+    <!--  Internal target: compile   -->
+    <target name="compile" depends="preprocess-source">
+        <ant dir="${util/jlft}" inheritAll="false"/>
+        <mkdir dir="${build}/compile/classes"/>
+        <javac srcdir="${build}/init/src" destdir="${build}/compile/classes" bootclasspath="${midp/lib}"
+               encoding="utf-8" target="1.1" source="1.2" debug="off"/>
+    </target>
+
+    <!--  Internal target: obfuscate -->
+    <target name="obfuscate" depends="compile" unless="skip-obfuscate">
+        <mkdir dir="${build}/obfuscate1/classes"/>
+        <proguard note="off" defaultpackage="" usemixedcaseclassnames="off" overloadaggressively="on" obfuscate="true"
+                  optimize="true" allowaccessmodification="true">
+            <injar name="${build}/compile/classes"/>
+            <outjar name="${build}/obfuscate1/classes"/>
+            <keep access="public" type="class" extends="javax.microedition.midlet.MIDlet"/>
+            <libraryjar path="${midp/lib}"/>
+        </proguard>
+        <mkdir dir="${build}/obfuscate/classes"/>
+        <proguard note="off" defaultpackage="" obfuscate="false" optimize="true" allowaccessmodification="true">
+            <injar name="${build}/obfuscate1/classes"/>
+            <outjar name="${build}/obfuscate/classes"/>
+            <keep access="public" type="class" extends="javax.microedition.midlet.MIDlet"/>
+            <libraryjar path="${midp/lib}"/>
+        </proguard>
+    </target>
+
+    <!--  Internal target: skip-obfuscate  -->
+    <target name="skip-obfuscate" depends="compile" if="skip-obfuscate">
+        <mkdir dir="${build}/obfuscate/classes"/>
+        <copy todir="${build}/obfuscate/classes">
+            <fileset dir="${build}/compile/classes"/>
+        </copy>
+    </target>
+
+    <!--  Internal target: preverify   -->
+    <target name="preverify" depends="obfuscate,skip-obfuscate">
+        <mkdir dir="${build}/preverified/classes"/>
+        <exec executable="${midp}/bin/preverify">
+            <arg line="-classpath '${midp/lib}'"/>
+            <arg line="-d '${build}/preverified/classes'"/>
+            <arg line="'${build}/obfuscate/classes'"/>
+            <arg line="-cldc"/>
+        </exec>
+    </target>
+
+
+    <!--  Internal target: preprocess-manifest   -->
+    <target name="preprocess-manifest" depends="init">
+        <copy file="${res}/MANIFEST.MF" todir="${build}"/>
+        <replace file="${build}/MANIFEST.MF" encoding="UTF-8">
+            <replacefilter token="${3ns}VERSION${3ns}" value="${version/jimm}"/>
+            <replacefilter token="${3ns}VERSION-JAVA${3ns}" value="${version/java}"/>
+            <replacefilter token="${3ns}DATE${3ns}" value="${date}"/>
+            <replacefilter token="${3ns}MIDP-PROFILE${3ns}" value="${midp_profile}"/>
+        </replace>
+    </target>
+
+    <!--  Internal target: preprocess-resources  -->
+    <target name="preprocess-resources">
+        <mkdir dir="${build}/res"/>
+        <copy todir="${build}/res" includeEmptyDirs="false">
+            <fileset dir="${res}" includes="*" excludes="MANIFEST.MF"/>
+        </copy>
+        <copy todir="${build}/res" flatten="true" includeEmptyDirs="false">
+            <fileset dir="${res/all}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="true" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${res/target}">
+                <exclude name="lib/**"/>
+            </fileset>
+        </copy>
+		<copy todir="${build}/res" flatten="true" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${smiles_dir}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${files_dir}"/>
+        </copy>
+		<copy todir="${build}/res" flatten="true" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${sounds_dir}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${gifsmiles_dir}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${anismiles_dir}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${gfont_dir}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${clchat_dir}"/>
+        </copy>        
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${toolbars_dir}"/>
+        </copy>
+        <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${schemes_dir}"/>
+        </copy>
+		 <copy todir="${build}/res" flatten="false" includeEmptyDirs="false" failonerror="false">
+            <fileset dir="${sboltun_dir}"/>
+        </copy>
+    </target>
+
+    <!--  Internal target: jarsizetask  -->
+    <target name="jarsizetask">
+        <ant dir="${util/jarsizetask}" inheritAll="false"/>
+        <taskdef name="jarsize" classname="JarSizeTask" classpath="${util/jarsizetask/lib}"/>
+    </target>
+
+    <!--  Target: dist  -->
+    <target name="dist" depends="preverify,preprocess-manifest,preprocess-resources,jarsizetask"
+            description="Generate the distribution">
+        <mkdir dir="${dist}/bin"/>
+        <jar destfile="${dist}/bin/Jimm.jar" manifest="${build}/MANIFEST.MF">
+            <fileset dir="${build}/preverified/classes"/>
+            <fileset dir="${build}/res"/>
+        </jar>
+        <jarsize file="${dist}/bin/Jimm.jar"/>
+        <unjar src="${dist}/bin/Jimm.jar" dest="${dist}/bin">
+            <patternset includes="META-INF/MANIFEST.MF"/>
+        </unjar>
+        <move file="${dist}/bin/META-INF/MANIFEST.MF" tofile="${dist}/bin/Jimm.jad"/>
+        <delete dir="${dist}/bin/META-INF"/>
+        <delete dir="${build}"/>
+    </target>
+
+    <!--  Internal target: del_build  -->
+    <target name="del_build" description="Delete the build dir">
+        <delete dir="${build}"/>
+    </target>
+
+    <!--  Target: del_dist  -->
+    <target name="del_dist" description="Delete the dist dir">
+        <delete dir="${dist}"/>
+    </target>
+
+    <!--  Target: del_utils  -->
+    <target name="del_utils" description="Delete the utils dist and build dirs">
+        <ant dir="${util/sijapp}" inheritAll="false" target="clean"/>
+        <ant dir="${util/jarsizetask}" inheritAll="false" target="clean"/>
+        <ant dir="${util/jlft}" inheritAll="false" target="clean"/>
+        <ant dir="${util/langs}" inheritAll="false" target="clean"/>
+    </target>
+
+    <!--  Target: clean without cleaning  utils -->
+    <target name="clean" description="Clean the distribution(without utils)" depends="del_build,del_dist"/>
+
+    <!--  Target: clean all  -->
+    <target name="clean-all" description="Clean the distribution" depends="clean,del_utils"/>
+
+</project>

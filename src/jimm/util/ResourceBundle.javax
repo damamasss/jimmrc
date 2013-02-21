@@ -1,0 +1,205 @@
+/*******************************************************************************
+ Jimm - Mobile Messaging - J2ME ICQ clone
+ Copyright (C) 2003-07  Jimm Project
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ ********************************************************************************
+ File: src/jimm/util/ResourceBundle.java
+ Version: ###VERSION###  Date: ###DATE###
+ Author(s): Manuel Linsmayer, Artyomov Denis, Rishat Shamsutdinov
+ *******************************************************************************/
+
+package jimm.util;
+
+import jimm.comm.Util;
+
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.InputStream;
+import java.util.Hashtable;
+
+public class ResourceBundle {
+
+    public static String[] langAvailable;
+    static private int keys[][]; // [index, len][number]
+    static private byte res[]; // + ~50000 free bytes
+    //static private Hashtable resources = null;
+    static private int keyse[][];
+    static private byte rese[]; // + 8168 free bytes
+
+    static {
+        try {
+            InputStream istream = (new Object().getClass()).getResourceAsStream("/langlist.lng");
+            DataInputStream dos = new DataInputStream(istream);
+            int size = dos.readShort();
+            langAvailable = new String[size];
+            for (int i = 0; i < size; i++) {
+                langAvailable[i] = dos.readUTF();
+            }
+            istream.close();
+            dos.close();
+        } catch (Exception e) {
+        }
+    }
+
+    private static String currUiLanguage = ResourceBundle.langAvailable[0];
+
+    public static String getCurrUiLanguage() {
+        return (ResourceBundle.currUiLanguage);
+    }
+
+    public static void setCurrUiLanguage(String currUiLanguage) {
+        if (ResourceBundle.currUiLanguage.equals(currUiLanguage)) {
+            return;
+        }
+        for (int i = 0; i < ResourceBundle.langAvailable.length; i++) {
+            if (ResourceBundle.langAvailable[i].equals(currUiLanguage)) {
+                ResourceBundle.currUiLanguage = currUiLanguage;
+                loadLang();
+                return;
+            }
+        }
+    }
+
+    static private void loadLang() {
+        InputStream istream;
+        try {
+            istream = (new Object().getClass()).getResourceAsStream("/" + ResourceBundle.currUiLanguage + ".lng");
+            DataInputStream dos = new DataInputStream(istream);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ByteArrayOutputStream baose = new ByteArrayOutputStream();
+            int size = dos.readShort();
+            keys = new int[2][size];
+            keyse = new int[2][130];
+            byte[] lngStr;
+            int len;
+            int bPos = 0;
+            int bPose = 0;
+            int idx;
+            String key;
+            System.out.println("size: " + size);
+            for (int j = 0; j < size; j++) {
+                //resources.put(dos.readUTF(), dos.readUTF());
+                /* Test variant. TODO: return old, if this method is bad */
+                //resources.put(getKey(dos.readUTF()), Util.stringToByteArray(dos.readUTF(), true));                
+                key = dos.readUTF();
+                System.out.println("key: " + key);
+                String lmmmm = dos.readUTF();
+                System.out.println("lmmmm: " + lmmmm);
+                lngStr = Util.stringToByteArray(lmmmm, true);
+                try {
+                    idx = Integer.parseInt(key);
+                    len = lngStr.length;
+                    baos.write(lngStr, 0, len);
+                    keys[0][idx] = bPos;
+                    keys[1][idx] = len;
+                    bPos += len;
+                } catch (NumberFormatException nfe) {
+                    try {
+                        idx = Integer.parseInt(key.substring(key.length() - 3));
+                        idx -= 100;
+                        len = lngStr.length;
+                        baose.write(lngStr, 0, len);
+                        keyse[0][idx] = bPose;
+                        keyse[1][idx] = len;
+                        bPose += len;
+                    } catch (Exception e) {
+                    }
+                }
+            }
+            res = baos.toByteArray();
+            baos.close();
+            rese = baose.toByteArray();
+            baose.close();
+            istream.close();
+        } catch (Exception e) {
+        }
+    }
+
+//    private static Object getKey(String key) {
+//        return key;
+//    }
+//
+//    public static synchronized String getString(String key) {
+//        Object o = getKey(key);
+//        if (null == o) return null;
+//        if (null == resources) loadLang();
+//        if (null == resources) return key;
+//        byte[] value = (byte[]) resources.get(o);
+//        return (null == value) ? key : Util.byteArrayToString(value, true);
+//    }
+
+    public static synchronized String getString(String skey) {
+        int key;
+        try {
+            key = Integer.parseInt(skey);
+        } catch (Exception e) {
+            return skey;
+        }
+        if (null == res) loadLang();
+        if (null == res) return skey;
+        try {
+            int bPos = keys[0][key];
+            int len = keys[1][key];
+            return Util.byteArrayToString(res, bPos, len, true);
+        } catch (Exception e) {
+        }
+        return Integer.toString(key);
+    }
+
+//    public static synchronized String getError(String key) {
+//        if (null == key) return null;
+//        if (null == resources) return key;
+//        byte[] value = (byte[]) resources.get(key);
+//        return (null == value) ? key : Util.byteArrayToString(value, true);
+//    }
+
+    public static synchronized String getError(String keyl) {
+        int key;
+        try {
+            key = Integer.parseInt(keyl.substring(keyl.length() - 3));
+            key -= 100;
+        } catch (Exception e) {
+            return keyl;
+        }
+        if (rese == null) {
+            return keyl;
+        }
+        try {
+            int bPos = keyse[0][key];
+            int len = keyse[1][key];
+            return Util.byteArrayToString(rese, bPos, len, true);
+        } catch (Exception e) {
+        }
+        return keyl;
+    }
+
+    public static String getEllipsisString(String key) {
+        return getString(key) + "...";
+    }
+	
+	public static String getCRLFString(String key) {
+        StringBuffer sb = new StringBuffer(getString(key));
+        char chr;
+        for (int i = 0; i < sb.length(); i++) {
+            chr = sb.charAt(i);
+            if (chr == '\t') {
+                sb.setCharAt(i, '\n');
+            }
+        }
+        return sb.toString();
+    }
+
+}
